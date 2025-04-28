@@ -2,7 +2,7 @@ const fastify = require("fastify")({enableCors:true,});
 const fastifyCors = require('@fastify/cors');
 
 fastify.register(fastifyCors, {
-    origin: 'http://localhost:5173',  // Allow only this origin
+    origin: '*',  // Allow only this origin
     methods: ['GET', 'POST', 'OPTIONS'],
   });
 // Register PostgreSQL plugin
@@ -25,7 +25,7 @@ fastify.get("/lang/:lang_code", async (req, reply) => {
 });
 
 // Start the server
-fastify.listen({ port: 3000 }, (err) => {
+fastify.listen({ port: 3000,host:'0.0.0.0' }, (err) => {
   if (err) {
     console.log(err);
     process.exit(1);
